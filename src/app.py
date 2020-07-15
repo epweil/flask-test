@@ -10,7 +10,7 @@ import planes
 import plotter
 import csv
 import pandas as pd
-Path = os.getcwd()
+#Path = os.getcwd()
 app = Flask(__name__)
 # Screen to choose a plane 
 @app.route('/')
@@ -135,7 +135,9 @@ def clear():
     app.config["opperationsX"] = []
     app.config["opperationsY"] = []
 #Main
+    """
 if __name__ == "__main__":
+    """
     cwd = os.getcwd()
     print(cwd+"/templates/planes/")
     if not os.path.exists(cwd+"/templates/planes/"):
@@ -147,7 +149,7 @@ if __name__ == "__main__":
         os.mkdir(cwd+"/bags")
     Path2 = Path + "/planes"
     """
-    app.config['planes'] = planes.getPlanes()
+    #app.config['planes'] = planes.getPlanes()
     app.config['title'] = []
     app.config['legend'] = []
     app.config["plotY"] = []
