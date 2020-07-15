@@ -11,14 +11,14 @@ import plotter
 import csv
 import pandas as pd
 Path = os.getcwd()
-app = Flask(__name__, template_folder="../templates")
+app = Flask(__name__)
 # Screen to choose a plane 
 @app.route('/')
 def index():
-    app.template_folder = "../templates"
     #File = Path+'/templates/planes.html'
-    return render_template('planes.html')
+    return render_template('index.html')
 #Screen to choose a bag
+"""
 @app.route('/bags', methods=["POST"])
 def bags(): 
     selected = request.form['button3'] 
@@ -146,6 +146,7 @@ if __name__ == "__main__":
     if not os.path.exists(cwd+"/bags"):
         os.mkdir(cwd+"/bags")
     Path2 = Path + "/planes"
+    """
     app.config['planes'] = planes.getPlanes()
     app.config['title'] = []
     app.config['legend'] = []
