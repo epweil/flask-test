@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" herf="{{url_for('static', filename='css/bootstrap.css')}}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    {% if config.bags|length == 0 %}
+<h1>No Bags Found</h1>
+{% else %}
+    <h1>Pick a bag to explore plots</h1>
+
+    <form action ="plot",  method="post">
+        {% for i in config.bags %}
+        <button type="submit" name="button" value = {{i}}>{{i}}</button>
+    
+    
+    {% endfor %}
+        {% endif %}
+    </form>
+    
+
+</body>
+</html>

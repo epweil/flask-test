@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .column {
+  float: left;
+  width: 50%;
+}
+input[type=number]{
+  -moz-appearance: textfield;
+    width: 20px;
+    height: 10px;
+} 
+input[type=checkbox]{
+    font-size: 12px;
+} 
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
+<body>
+    <form action = "/linkedPlot", method ="POST">
+      <h1>Please choose the values you would like to plot</h1>
+      <div class="column">
+        
+        
+        <h2>Y axis</h2>
+        <h3 id = "XaxisWillBeTime">X axis will be time unless you select an Xaxis at the bottom</h3>
+        Please enter a title<input type= "text" name = "title" ></input>
+        {% for ii in config.options %}
+        {% if (ii != "Unnamed: 0") and ii != ""  %}
+        
+        {{ii}}<input type = "checkbox" value = {{ii}} name = "checkboxY"></input>
+        * <input type = "number" value = 1 name = {{ii}} >
+        / <input type = "number" value = 1 name = {{ii}} >
+        + <input type = "number" value = 0 name = {{ii}} >
+        - <input type = "number" value = 0 name = {{ii}}>
+        <br>
+        {% endif %}
+        {% if  ii == ""  %}
+        <br>
+        {% endif %}
+        {% endfor %}
+        <input type = "submit" value = "Plot" name = "Plot"><br>
+        <button type = "button"  onclick = "visable()">Set X Other Than Time</button><br>
+      </div>
+      <div class="column" id ="X" style="visibility: hidden">
+  
+        <h2>X axis</h2>
+      
+        {% for ii in config.options %}
+        {% if (ii != "Unnamed: 0") and ii != ""  %}
+        
+        {{ii}}<input type = "checkbox" value = {{ii}} name = "checkboxX"></input>
+        * <input type = "number" value = 1 name = {{ii}}X >
+        / <input type = "number" value = 1 name = {{ii}}X >
+        + <input type = "number" value = 0 name = {{ii}}X >
+        - <input type = "number" value = 0 name = {{ii}}X>
+        <br>
+        {% endif %}
+        {% if  ii == ""  %}
+        <br>
+        {% endif %}
+        {% endfor %}
+
+        </div>
+
+
+
+        
+        <input type = "submit" value = "Done", name = "Do"><br>
+    </form>
+    
+      
+    
+<Script>
+  var isVisable = false
+ function visable(){
+   if(!isVisable){
+    isVisable = true;
+    document.getElementById("XaxisWillBeTime").innerText = "Select an X Axis Variable"
+    document.getElementById("X").style.visibility = "visible"
+   }
+   else{
+    isVisable = false;
+    document.getElementById("XaxisWillBeTime").innerText = "X axis will be time"
+    document.getElementById("X").style.visibility = "hidden"
+   }
+ }
+
+
+</Script>
+</body>
+</html>
